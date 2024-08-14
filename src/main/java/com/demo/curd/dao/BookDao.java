@@ -1,6 +1,6 @@
 package com.demo.curd.dao;
 
-import com.demo.curd.repo.BookRepo;
+import com.demo.curd.repository.BookRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page ;
 import org.springframework.data.domain.Pageable;

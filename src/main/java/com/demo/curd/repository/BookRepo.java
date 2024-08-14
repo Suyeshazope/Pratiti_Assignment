@@ -1,4 +1,4 @@
-package com.demo.curd.repo;
+package com.demo.curd.repository;
 
 import com.demo.curd.entity.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
