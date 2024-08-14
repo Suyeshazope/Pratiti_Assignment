@@ -56,11 +56,10 @@ public class BookService {
             throw new BookNotFoundException("Book not found with ID: " + bookId);
         }
 
-        if(book1.isPresent()){
-            Book existingBook = book1.get() ;
-            modelMapper.map(book , existingBook);
-            bookDao.saveBook(existingBook);
-        }
+        Book existingBook = book1.get() ;
+        modelMapper.map(book , existingBook);
+        bookDao.saveBook(existingBook);
+
     }
 
     public void deleteBook(Integer bookId) {
