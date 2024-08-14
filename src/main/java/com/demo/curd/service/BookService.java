@@ -1,33 +1,25 @@
 package com.demo.curd.service;
-
-import com.demo.curd.Repo.BookRepo;
 import com.demo.curd.dao.BookDao;
 import com.demo.curd.dto.BookDto;
 import com.demo.curd.entity.Book;
 import com.demo.curd.exception.BookAlreadyExistException;
 import com.demo.curd.exception.BookNotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page ;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class BookService {
-    @Autowired
-    private BookDao bookDao;
+    private final BookDao bookDao;
 
-    @Autowired
-    private ModelMapper modelMapper;
-    @Autowired
-    private BookRepo bookRepo;
+    private final ModelMapper modelMapper;
 
     public List<BookDto> getAllBooks(int page , int size) {
         Pageable pageable = PageRequest.of(page, size);

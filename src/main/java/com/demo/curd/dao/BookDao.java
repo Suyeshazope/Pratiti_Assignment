@@ -1,8 +1,8 @@
 package com.demo.curd.dao;
 
-import com.demo.curd.Repo.BookRepo;
+import com.demo.curd.repo.BookRepo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page ;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
@@ -13,9 +13,9 @@ import java.util.Optional;
 import com.demo.curd.entity.Book;
 
 @Component
+@RequiredArgsConstructor
 public class BookDao {
-    @Autowired
-    private BookRepo bookRepo ;
+    private final BookRepo bookRepo ;
 
     public Page<Book> getAllBooks(Pageable pageable) {
         return bookRepo.findAll(pageable);

@@ -1,10 +1,8 @@
 package com.demo.curd.controller;
 
 import com.demo.curd.dto.BookDto;
-import com.demo.curd.entity.Book;
-import com.demo.curd.exception.BookNotFoundException;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +15,9 @@ import java.util.List;
 @RestController
 //@Validated
 @RequestMapping("/library")
+@RequiredArgsConstructor
 public class BookController {
-
-    @Autowired
-    private BookService bookService;
+    private final BookService bookService;
 
     @GetMapping("getbooks")
     public ResponseEntity<List<BookDto>> getAllBooks(@RequestParam(defaultValue = "0") int page,
