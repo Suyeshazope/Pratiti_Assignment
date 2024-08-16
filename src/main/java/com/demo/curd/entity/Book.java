@@ -11,10 +11,10 @@ import lombok.Setter;
 public class Book {
 
     @Id
-    Integer bookId ;
-    String bookName ;
-    Double price ;
-    String author ;
-    String description ;
+    private Integer bookId ;
+    private String bookName ;
+    private Double price ;
+    private String author ;
+    private String description ;
 
 }
