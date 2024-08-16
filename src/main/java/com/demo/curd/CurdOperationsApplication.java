@@ -9,9 +9,7 @@ import org.springframework.context.annotation.Bean;
 public class CurdOperationsApplication {
 
 	public static void main(String[] args) {
-
 		SpringApplication.run(CurdOperationsApplication.class, args);
-
 
 	}
 
