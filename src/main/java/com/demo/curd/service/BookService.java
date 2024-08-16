@@ -12,7 +12,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -21,10 +20,12 @@ public class BookService {
 
     private final ModelMapper modelMapper;
 
+    private static final String BOOK_NOT_FOUND_MESSAGE = "Book not found with ID:";
+
     public List<BookDto> getAllBooks(int page , int size) {
         Pageable pageable = PageRequest.of(page, size);
         Page<Book> books = bookDao.getAllBooks(pageable);
-        return books.stream().map(book -> modelMapper.map(book, BookDto.class)).collect(Collectors.toList());
+        return books.stream().map(book -> modelMapper.map(book, BookDto.class)).toList();
     }
 
     public BookDto getBookById(Integer bookId) {
@@ -32,7 +33,7 @@ public class BookService {
         Optional<Book> book = bookDao.getBookById(bookId) ;
 
        if(book.isEmpty()){
-            throw new BookNotFoundException("Book not found with ID: " + bookId);
+            throw new BookNotFoundException(BOOK_NOT_FOUND_MESSAGE + bookId);
         }
 
         return modelMapper.map(book, BookDto.class);
@@ -53,7 +54,7 @@ public class BookService {
         Optional<Book> book1 = bookDao.getBookById(bookId) ;
 
         if(book1.isEmpty()){
-            throw new BookNotFoundException("Book not found with ID: " + bookId);
+            throw new BookNotFoundException(BOOK_NOT_FOUND_MESSAGE + bookId);
         }
 
         Book existingBook = book1.get() ;
@@ -66,7 +67,7 @@ public class BookService {
         Optional<Book> book1 = bookDao.getBookById(bookId) ;
 
         if(book1.isEmpty()){
-            throw new BookNotFoundException("Book not found with ID: " + bookId);
+            throw new BookNotFoundException(BOOK_NOT_FOUND_MESSAGE + bookId);
         }
         bookDao.deleteBook(bookId);
     }
@@ -78,6 +79,6 @@ public class BookService {
             throw new BookNotFoundException("Book not found with title : " + title);
         }
 
-        return books.stream().map(book -> modelMapper.map(book, BookDto.class)).collect(Collectors.toList());
+        return books.stream().map(book -> modelMapper.map(book, BookDto.class)).toList();
     }
 }

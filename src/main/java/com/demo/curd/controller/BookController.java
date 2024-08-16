@@ -18,14 +18,14 @@ import java.util.List;
 public class BookController {
     private final BookService bookService;
 
-    @GetMapping("getbooks")
+    @GetMapping("getBooks")
     public ResponseEntity<List<BookDto>> getAllBooks(@RequestParam(defaultValue = "0") int page,
                                                      @RequestParam(defaultValue = "5") int size) {
         List<BookDto> books = bookService.getAllBooks(page , size);
         return new ResponseEntity<>(books, HttpStatus.OK);
     }
 
-    @GetMapping("getbook/{id}")
+    @GetMapping("getBook/{id}")
     public ResponseEntity<BookDto> getBookById(@PathVariable Integer id) {
             BookDto book = bookService.getBookById(id) ;
             return ResponseEntity.ok(book) ;
@@ -59,7 +59,7 @@ public class BookController {
         return ResponseEntity.ok("Book Deleted Successfully") ;
     }
 
-    @GetMapping("getbookbytitle/{title}")
+    @GetMapping("getBookByTitle/{title}")
     public ResponseEntity<List<BookDto>> getBookByTitle(@PathVariable String title) {
         List<BookDto> book = bookService.getBookByTitle(title) ;
         return new ResponseEntity<>(book, HttpStatus.OK);

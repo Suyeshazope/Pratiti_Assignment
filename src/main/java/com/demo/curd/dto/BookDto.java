@@ -11,14 +11,14 @@ import lombok.Setter;
 public class BookDto {
 
     @NotNull(message="Book id can not be null")
-    Integer bookId;
-    String bookName;
+    private Integer bookId;
+    private String bookName;
 
     @Min(value = 1, message = "price should not be negative")
-    Double price;
-    String author;
+    private Double price;
+    private String author;
 
     @Size(min = 5 , max = 200 , message = "Description must be between 5 to 200 characters")
-    String description;
+    private String description;
 
 }
